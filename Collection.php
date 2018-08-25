@@ -28,6 +28,11 @@ class Collection
         return count($this->items);
     }
 
+    public function keys()
+    {
+        return new static(array_keys($this->items));
+    }
+
     public function first($default = null)
     {
         return isset($this->items[0])?$this->items[0]:$default;
@@ -46,7 +51,9 @@ class Collection
 
     public function map(callable $callback)
     {
-        return new static(array_map($callback, $this->items));
+        $keys = $this->keys()->all();
+        $items = (array_map($callback, $this->items, $keys));
+        return new static(array_combine());
     }
 
 
