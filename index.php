@@ -1,7 +1,8 @@
 <?php
-require_once 'Collection.php';
+require_once 'vendor/autoload.php';
+use App\Collection;
 
-$db = new PDO('mysql:host=localhost;dbname=collection','root','');
+$db = new PDO('mysql:host=localhost;dbname=collection', 'root', '');
 
 $a  = $db->query('select * from articles');
 
@@ -18,7 +19,3 @@ $articles  = $articles->filter(function ($article) {
 //});
 
 var_dump($articles);
-
-
-
-
